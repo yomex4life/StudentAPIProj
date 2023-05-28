@@ -25,3 +25,10 @@ jobs:
       - name: Goodbye world action step
         run: echo "Goodbye world"
         shell: bash
+  my-github-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump github context step
+        run: echo '${{ toJson(github.event) }}' | jq
+        shell: bash
+  
