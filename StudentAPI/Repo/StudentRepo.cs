@@ -26,7 +26,7 @@ namespace StudentAPI.Repo
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Student>> GetAllStudents()
+        public async Task<List<Student>> GetAllStudents()
         {
             return await _context.Students.ToListAsync();
         }

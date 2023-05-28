@@ -8,7 +8,7 @@ namespace StudentAPI.Repo
 {
     public interface IStudentRepo
     {
-        Task<IEnumerable<Student>> GetAllStudents();
+        Task<List<Student>> GetAllStudents();
         Task<Student> GetStudentById(int id);
         bool AddStudent(Student student);
         Task<Student> UpdateStudent(Student student);

@@ -23,7 +23,7 @@ namespace StudentAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetAllStudents()
+        public async Task<ActionResult<List<Student>>> GetAllStudents()
         {
             var students = await _studentRepo.GetAllStudents();
             return Ok(students);
