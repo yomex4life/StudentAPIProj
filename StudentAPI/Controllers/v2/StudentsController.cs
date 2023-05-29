@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using StudentAPI.Models;
 using StudentAPI.Repo;
 
-namespace StudentAPI.Controllers
+namespace StudentAPI.Controllers.v2
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("2.0")]
+    [ApiVersion("2.1")]
     public class StudentsController : ControllerBase
     {
         private readonly IStudentRepo _studentRepo;
@@ -22,10 +24,21 @@ namespace StudentAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetStudents20")]
+        [MapToApiVersion("2.0")]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
         {
             var students = await _studentRepo.GetAllStudents();
+            Console.WriteLine("Reporting from version 2");
+            return Ok(students);
+        }
+
+        [HttpGet(Name = "GetStudents21")]
+        [MapToApiVersion("2.1")]
+        public async Task<ActionResult<List<Student>>> GetAllStudentsV21()
+        {
+            var students = await _studentRepo.GetAllStudents();
+            Console.WriteLine("Reporting from version 2.1");
             return Ok(students);
         }
 

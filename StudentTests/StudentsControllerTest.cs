@@ -4,6 +4,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using StudentAPI.Controllers;
+using StudentAPI.Controllers.v1;
 using StudentAPI.Models;
 using StudentAPI.Repo;
 using StudentTests.Fixtures;
