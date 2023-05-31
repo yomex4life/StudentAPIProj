@@ -19,6 +19,9 @@ jobs:
         run: dotnet test --no-build --verbosity normal
   
   security-code-scan:
+    permissions:
+      contents: read
+      security-events: write
     needs: build-project
     runs-on: ubuntu-latest
     steps:
