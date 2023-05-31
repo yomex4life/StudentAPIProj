@@ -17,3 +17,21 @@ jobs:
         run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
+  
+  security-code-scan:
+    needs: build-project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Security Scan
+        uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+      - name: Snyk Code test
+        run: snyk code test --sarif > snyk-code.sarif
+      - name: Snyk Open Source monitor
+        run: snyk monitor 
+
+   
