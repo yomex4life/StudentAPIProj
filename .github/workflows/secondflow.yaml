@@ -1,0 +1,15 @@
+name: Second workflow
+
+on: workflow_dispatch
+jobs:
+  first-job: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "Holla"
+      - name: Print Goodbye
+        run: echo "Done -bye!"
+      - name: multiline command run
+        run: |
+            echo "First output"
+            echo "Second output"
